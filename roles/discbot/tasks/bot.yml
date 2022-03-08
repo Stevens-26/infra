@@ -37,10 +37,12 @@
       template:
         src: duck26.service.j2
         dest: /etc/systemd/system/duck26-{{ item.env }}.service
+      register: service
 
     - name: Enable and start bot
       service:
         name: duck26-{{ item.env }}
         enabled: true
         state: restarted
-      when: repo.changed
+        daemon_reload: true
+      when: repo.changed or service.changed

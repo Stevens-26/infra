@@ -5,8 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=duck
+WorkingDirectory=/srv/Duck26.{{ item.env }}/
 ExecStart=/usr/bin/python3 /srv/Duck26.{{ item.env }}/__main__.py
-Restart=on-failure
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
