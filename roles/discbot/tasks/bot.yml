@@ -1,9 +1,6 @@
 ---
 - name: setup bots
   block:
-    - debug:
-        var: item
-    
     - name: checkout
       git:
         repo: 'https://github.com/Stevens-26/Duck26.git'
