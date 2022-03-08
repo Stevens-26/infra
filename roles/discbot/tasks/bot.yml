@@ -1,0 +1,46 @@
+---
+- name: setup bots
+  block:
+    - debug:
+        var: item
+    
+    - name: checkout
+      git:
+        repo: 'https://github.com/Stevens-26/Duck26.git'
+        dest: /srv/Duck26.{{ item.env }}
+        version: "{{ item.env }}"
+      become_user: duck
+      register: repo
+
+    - name: install dep
+      pip:
+        requirements: /srv/Duck26.{{ item.env }}/requirements.txt
+      when: repo.changed
+    
+    - name: setup bot config file
+      template:
+        src: duck_bot_config.toml.j2
+        dest: /srv/Duck26.{{ item.env }}/duck_bot_config.toml
+        owner: duck
+        group: duck
+    
+    - name: copy over roles db
+      copy:
+        remote_src: true
+        src: /srv/Duck26.{{ item.env }}/reaction_roles.json.example
+        dest: /srv/Duck26.{{ item.env }}/reaction_roles.json
+        force: false
+        owner: duck
+        group: duck
+    
+    - name: setup systemd service
+      template:
+        src: duck26.service.j2
+        dest: /etc/systemd/system/duck26-{{ item.env }}.service
+
+    - name: Enable and start bot
+      service:
+        name: duck26-{{ item.env }}
+        enabled: true
+        state: restarted
+      when: repo.changed

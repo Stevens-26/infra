@@ -1,0 +1,12 @@
+[Unit]
+Description=Duck26 {{ item.env }} bot
+After=network.target
+
+[Service]
+Type=simple
+User=duck
+ExecStart=/usr/bin/python3 /srv/Duck26.{{ item.env }}/duck_bot.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,32 @@
+---
+- name: Add duck group
+  group:
+    name: duck
+    state: present
+  tags: common
+
+- name: Add duck user
+  user:
+    name: duck
+    group: duck
+  tags: common
+
+- name: Install deps
+  apt:
+    update_cache: yes
+    pkg:
+    - git
+    - python3-pip
+
+- name: import vault
+  include_vars:
+    file: vault.yml
+  
+- name: import the envs
+  include_vars:
+    file: envs.yml
+    name: envs
+
+- name: include bot tasks
+  include_tasks: bot.yml
+  with_items: "{{ envs.env }}"

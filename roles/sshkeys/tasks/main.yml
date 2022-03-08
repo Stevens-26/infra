@@ -1,0 +1,12 @@
+---
+- name: make ssh dir
+  file:
+    path: /root/.ssh
+    state: directory
+  tags: common
+
+- name: Move ssh keys file
+  copy:
+    src: authorized_keys
+    dest: /root/.ssh/authorized_keys
+  tags: common

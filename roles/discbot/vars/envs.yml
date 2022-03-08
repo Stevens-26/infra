@@ -1,0 +1,13 @@
+env:
+  - stag:
+    env: "stag"
+    token: "{{ token_stag }}"
+    cogs: ["cogs.commands.reaction_roles_command", "cogs.events.reaction_event", "cogs.commands.ping_command"]
+    prefix: "!db"
+    addReactionRoles: ["950400206506168411"]
+  - prod:
+    env: "prod"
+    token: "{{ token_prod }}"
+    cogs: ["cogs.commands.reaction_roles_command", "cogs.events.reaction_event", "cogs.commands.ping_command"]
+    prefix: "!db"
+    addReactionRoles: ["950230130087833680"]

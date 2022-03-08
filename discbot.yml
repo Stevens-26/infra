@@ -1,0 +1,6 @@
+---
+- hosts: bot0
+  roles:
+    #    - ssh
+    #- sshkeys
+    - discbot
