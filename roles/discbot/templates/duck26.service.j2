@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=simple
 User=duck
-ExecStart=/usr/bin/python3 /srv/Duck26.{{ item.env }}/duck_bot.py
+ExecStart=/usr/bin/python3 /srv/Duck26.{{ item.env }}/__main__.py
 Restart=on-failure
 
 [Install]
