@@ -29,6 +29,15 @@
         force: false
         owner: duck
         group: duck
+
+    - name: copy over starboard db
+      copy:
+        remote_src: true
+        src: /srv/Duck26.{{ item.env }}/starboard_messages.json.example
+        dest: /srv/Duck26.{{ item.env }}/starboard_messages.json
+        force: false
+        owner: duck
+        group: duck
     
     - name: setup systemd service
       template:

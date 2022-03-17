@@ -5,9 +5,15 @@ env:
     cogs: ["cogs.commands.reaction_roles_command", "cogs.events.reaction_event", "cogs.commands.ping_command"]
     prefix: "!db"
     addReactionRoles: ["950400206506168411"]
+    reactionThreshold: 2
+    starboardEmoji: "⭐"
+    starboardChannelId: 940462466134052864
   - prod:
     env: "prod"
     token: "{{ token_prod }}"
     cogs: ["cogs.commands.reaction_roles_command", "cogs.events.reaction_event", "cogs.commands.ping_command"]
     prefix: "!db"
     addReactionRoles: ["950230130087833680"]
+    reactionThreshold: 5
+    starboardEmoji: "⭐"
+    starboardChannelId: 953831620643790939
